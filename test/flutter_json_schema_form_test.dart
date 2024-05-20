@@ -140,7 +140,7 @@ void main() {
       );
 
       final usernameController = controller
-          .textEditingControllerMapping?['username'] as TextEditingController;
+          .textEditingControllerMapping['username'] as TextEditingController;
 
       usernameController.value = const TextEditingValue(
         text: 'User',

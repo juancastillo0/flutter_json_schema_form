@@ -64,30 +64,29 @@ class FlutterJsonSchemaForm extends StatelessWidget {
           Text(
             jsonSchema.title as String,
             style: isInnerField
-                ? Theme.of(context).textTheme.headline6
-                : Theme.of(context).textTheme.headline5,
+                ? Theme.of(context).textTheme.titleLarge
+                : Theme.of(context).textTheme.titleMedium,
           ),
         if (jsonSchema.description is String)
           Text(
             jsonSchema.description as String,
           ),
         const SizedBox(height: 16),
-        if (jsonSchema.properties is Map)
-          ...jsonSchema.properties.entries
-              .map(
-                (entry) => FlutterJsonSchemaFormField(
-                  fileWidget: fileWidget,
-                  forceDisabled: disabled,
-                  jsonSchema: entry.value,
-                  path: path.isEmpty ? [entry.key] : [...path, entry.key],
-                  controller: controller,
-                  editingControllerMapping:
-                      controller.textEditingControllerMapping,
-                  formState: formState,
-                  onChanged: onChanged,
-                ),
-              )
-              .toList(),
+        ...jsonSchema.properties.entries
+            .map(
+              (entry) => FlutterJsonSchemaFormField(
+                fileWidget: fileWidget,
+                forceDisabled: disabled,
+                jsonSchema: entry.value,
+                path: path.isEmpty ? [entry.key] : [...path, entry.key],
+                controller: controller,
+                editingControllerMapping:
+                    controller.textEditingControllerMapping,
+                formState: formState,
+                onChanged: onChanged,
+              ),
+            )
+            .toList(),
         isInnerField
             ? Container()
             : Row(

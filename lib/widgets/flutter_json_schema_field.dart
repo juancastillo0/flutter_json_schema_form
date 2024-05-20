@@ -1,7 +1,5 @@
 library flutter_json_schema_form;
 
-import 'dart:convert';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_json_schema_form/controller/flutter_json_schema_form_controller.dart';
@@ -70,25 +68,25 @@ class FlutterJsonSchemaFormField extends StatelessWidget {
       )
       .toList();
 
-  Future<void> onUpload() async {
-    final svgProp = controller.data['svgProp'];
-    if (svgProp != null) {
-      final newData = controller.data;
-      newData['svgProp'] = null;
-      controller.setData(newData);
-      return;
-    }
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      final file = result.files.first;
-      final extension = file.extension;
-      if (extension == "svg") {
-        controller.addFile(file);
-      }
-    } else {
-      // User canceled the picker
-    }
-  }
+  // Future<void> onUpload() async {
+  //   final svgProp = controller.data['svgProp'];
+  //   if (svgProp != null) {
+  //     final newData = controller.data;
+  //     newData['svgProp'] = null;
+  //     controller.setData(newData);
+  //     return;
+  //   }
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles();
+  //   if (result != null) {
+  //     final file = result.files.first;
+  //     final extension = file.extension;
+  //     if (extension == "svg") {
+  //       controller.addFile(file);
+  //     }
+  //   } else {
+  //     // User canceled the picker
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

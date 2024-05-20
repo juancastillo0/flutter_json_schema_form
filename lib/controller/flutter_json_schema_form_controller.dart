@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_schema_document/json_schema_document.dart';
 
@@ -19,7 +19,7 @@ class FlutterJsonSchemaFormController {
 
   JsonSchema jsonSchema;
 
-  List<PlatformFile> files = [];
+  List<FileData> files = [];
 
   Map<String, dynamic> get data => computeData();
 
@@ -62,7 +62,7 @@ class FlutterJsonSchemaFormController {
       );
   }
 
-  void addFile(PlatformFile file) {
+  void addFile(FileData file) {
     files.add(file);
   }
 
@@ -97,6 +97,18 @@ class FlutterJsonSchemaFormController {
       }
     }
   }
+}
+
+class FileData {
+  final String name;
+  final int size;
+  final Uint8List? bytes;
+
+  const FileData({
+    required this.name,
+    required this.size,
+    required this.bytes,
+  });
 }
 
 /// Takes as an argument a [JsonSchema] and return a Map<String, dynamic> where
